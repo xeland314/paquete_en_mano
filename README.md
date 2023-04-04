@@ -1,2 +1,16 @@
-# paquete-en-mano
-“Paquete en mano” es un sistema de gestión de logística y transporte multiplataforma el cuál tiene como propósito solventar una problemática que se presentan diversas empresas en el Ecuador, el cuál es la optimización del proceso de entrega de un paquete. 
+# paquete_en_mano
+
+A new Flutter project.
+
+## Getting Started
+
+This project is a starting point for a Flutter application.
+
+A few resources to get you started if this is your first Flutter project:
+
+- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
+- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+
+For help getting started with Flutter development, view the
+[online documentation](https://docs.flutter.dev/), which offers tutorials,
+samples, guidance on mobile development, and a full API reference.
