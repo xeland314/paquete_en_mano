@@ -1,6 +1,7 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
-    <application
-        android:label="paquete_en_mano"
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.aplicacion">
+   <application
+        android:label="aplicacion"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

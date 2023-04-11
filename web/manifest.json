@@ -1,6 +1,6 @@
 {
-    "name": "paquete_en_mano",
-    "short_name": "paquete_en_mano",
+    "name": "aplicacion",
+    "short_name": "aplicacion",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
