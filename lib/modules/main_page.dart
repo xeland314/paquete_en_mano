@@ -1,58 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:paquete_en_mano/modules/menu.dart';
 
-class Menu extends StatelessWidget {
-  const Menu({Key? key}) : super(key: key);
-
-  DrawerHeader buildHeader() {
-    return const DrawerHeader(
-      decoration: BoxDecoration(
-        color: Colors.blue,
-      ),
-      child: Text(
-        'Paquete en mano',
-        style: TextStyle(
-          color: Colors.white,
-          fontSize: 24,
-        ),
-      ),
-    );
-  }
+class Dashboard extends StatefulWidget {
+  const Dashboard({Key? key}) : super(key: key);
 
   @override
-  Widget build(BuildContext context) {
-    return Drawer(
-      child: ListView(
-        padding: EdgeInsets.zero,
-        children: <Widget>[
-          buildHeader(),
-          const ListTile(
-            leading: Icon(Icons.notifications),
-            title: Text('Notificaciones'),
-          ),
-          const ListTile(
-            leading: Icon(Icons.account_circle),
-            title: Text('Perfil'),
-          ),
-          const ListTile(
-            leading: Icon(Icons.settings),
-            title: Text('Ajustes'),
-          ),
-          ListTile(
-            leading: const Icon(Icons.logout),
-            title: const Text('Salir'),
-            onTap: () {
-              Navigator.of(context).pop();
-              Navigator.of(context).pop();
-            },
-          ),
-        ],
-      ),
-    );
-  }
+  DashboardState createState() => DashboardState();
 }
 
-class Dashboard extends StatelessWidget {
-  const Dashboard({Key? key}) : super(key: key);
+class DashboardState extends State<Dashboard> {
+  int _selectedIndex = 0;
+
+  Widget buildBody() {
+    switch (_selectedIndex) {
+      case 0:
+        return const Text('Bitácora diaria');
+      case 1:
+        return const Text('Reporte diario');
+      case 2:
+        return const Text('Historial de bitácoras');
+      case 3:
+        return const Text('Historial de ubicaciones');
+      case 4:
+        return const Text('Notificaciones');
+      case 5:
+        return const Text('Perfil');
+      case 6:
+        return const Text('Ajustes');
+      default:
+        return const Text('Salir');
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -61,8 +39,14 @@ class Dashboard extends StatelessWidget {
         title: const Text('Dashboard', textAlign: TextAlign.right),
         backgroundColor: Colors.indigo,
       ),
-      drawer: const Menu(),
-      body: const Center(),
+      drawer: Menu(
+        onItemSelected: (index) {
+          setState(() {
+            _selectedIndex = index;
+          });
+        },
+      ),
+      body: buildBody(),
     );
   }
 }

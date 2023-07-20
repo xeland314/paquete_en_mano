@@ -1,13 +1,9 @@
 import 'dart:convert';
-
-import 'package:flutter/foundation.dart';
 import 'package:http/http.dart';
 import 'package:sentry_flutter/sentry_flutter.dart';
 
 final class AuthApi {
-  final String _baseUrl = kReleaseMode
-      ? 'http://127.0.0.1:8000'
-      : 'https://acvtestsys.onrender.com';
+  final String _baseUrl = 'http://127.0.0.1:8000';
   late String _username;
   late String _password;
 
