@@ -67,4 +67,43 @@ class Usuario {
         "nombres": nombres,
         "apellidos": apellidos,
       };
+
+  static bool esCedulaValida(String cedula) {
+    // Verificar que el número tenga exactamente 10 dígitos
+    if (cedula.length != 10) {
+      return false;
+    }
+
+    // Extraer el tercer dígito y verificar que sea menor o igual a 6
+    int tercerDigito = int.parse(cedula.substring(2, 3));
+    if (tercerDigito > 6) {
+      return false;
+    }
+
+    // Calcular la suma de los productos de los dígitos en las posiciones impares por 2
+    int sumaImpares = 0;
+    for (int i = 0; i < cedula.length - 1; i += 2) {
+      int digito = int.parse(cedula[i]) * 2;
+      if (digito >= 10) {
+        digito -= 9;
+      }
+      sumaImpares += digito;
+    }
+
+    // Calcular la suma de los dígitos en las posiciones pares
+    int sumaPares = 0;
+    for (int i = 1; i < cedula.length - 1; i += 2) {
+      sumaPares += int.parse(cedula[i]);
+    }
+
+    // Sumar los resultados de los pasos anteriores
+    int sumaTotal = sumaImpares + sumaPares;
+
+    // Calcular el residuo de la división entre la suma total y 10
+    int residuo = sumaTotal % 10;
+
+    // Restar el residuo a 10 y verificar si el resultado es igual al décimo dígito
+    int verificador = residuo == 0 ? residuo : (10 - residuo);
+    return verificador == int.parse(cedula[9]);
+  }
 }

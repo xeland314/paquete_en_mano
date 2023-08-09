@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:paquete_en_mano/api/models/empresa.dart';
 import 'package:paquete_en_mano/api/models/usuario.dart';
 
 class PerfilUsuario extends StatelessWidget {
   final Usuario usuario;
+  final Empresa empresa;
 
-  const PerfilUsuario({Key? key, required this.usuario}) : super(key: key);
+  const PerfilUsuario({Key? key, required this.usuario, required this.empresa})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,12 +23,8 @@ class PerfilUsuario extends StatelessWidget {
               subtitle: Image.network(usuario.fotografia!),
             ),
           ListTile(
-            title: const Text('ID'),
-            subtitle: Text(usuario.id.toString()),
-          ),
-          ListTile(
             title: const Text('Empresa'),
-            subtitle: Text(usuario.empresa.toString()),
+            subtitle: Text(empresa.nombreComercial.toString()),
           ),
           ListTile(
             title: const Text('Rol'),

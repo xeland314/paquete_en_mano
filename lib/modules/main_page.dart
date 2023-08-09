@@ -1,5 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
+import 'package:paquete_en_mano/api/empresa_api.dart';
+import 'package:paquete_en_mano/api/models/usuario.dart';
+import 'package:paquete_en_mano/api/usuarios_api.dart';
 import 'package:paquete_en_mano/modules/menu.dart';
+import 'package:paquete_en_mano/modules/perfil_usuario/perfil.dart';
 
 class Dashboard extends StatefulWidget {
   const Dashboard({Key? key}) : super(key: key);
@@ -9,27 +14,26 @@ class Dashboard extends StatefulWidget {
 }
 
 class DashboardState extends State<Dashboard> {
-  int _selectedIndex = 0;
+  final _storage = const FlutterSecureStorage();
+  UsuarioApi? usuarioApi;
+  dynamic usuario;
+  EmpresaApi? empresaApi;
+  dynamic empresa;
 
-  Widget buildBody() {
-    switch (_selectedIndex) {
-      case 0:
-        return const Text('Bitácora diaria');
-      case 1:
-        return const Text('Reporte diario');
-      case 2:
-        return const Text('Historial de bitácoras');
-      case 3:
-        return const Text('Historial de ubicaciones');
-      case 4:
-        return const Text('Notificaciones');
-      case 5:
-        return const Text('Perfil');
-      case 6:
-        return const Text('Ajustes');
-      default:
-        return const Text('Salir');
-    }
+  @override
+  void initState() {
+    super.initState();
+    initUsuario();
+  }
+
+  Future<void> initUsuario() async {
+    final token = await _storage.read(key: "token");
+    final username = await _storage.read(key: "username");
+    usuarioApi = UsuarioApi(token!);
+    empresaApi = EmpresaApi(token);
+    Usuario usuario = await usuarioApi!.searchUsuario(username!);
+    empresa = await empresaApi!.getEmpresa(usuario.empresa);
+    setState(() {});
   }
 
   @override
@@ -41,12 +45,82 @@ class DashboardState extends State<Dashboard> {
       ),
       drawer: Menu(
         onItemSelected: (index) {
-          setState(() {
-            _selectedIndex = index;
-          });
+          // Aquí es donde se cambia la navegación
+          switch (index) {
+            case 0:
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      PerfilUsuario(usuario: usuario, empresa: empresa),
+                ),
+              );
+              break;
+            case 1:
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      PerfilUsuario(usuario: usuario, empresa: empresa),
+                ),
+              );
+              break;
+            case 2:
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      PerfilUsuario(usuario: usuario, empresa: empresa),
+                ),
+              );
+              break;
+            case 3:
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      PerfilUsuario(usuario: usuario, empresa: empresa),
+                ),
+              );
+              break;
+            case 4:
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      PerfilUsuario(usuario: usuario, empresa: empresa),
+                ),
+              );
+              break;
+            case 5:
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      PerfilUsuario(usuario: usuario, empresa: empresa),
+                ),
+              );
+              break;
+            case 6:
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      PerfilUsuario(usuario: usuario, empresa: empresa),
+                ),
+              );
+              break;
+            default:
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) =>
+                      PerfilUsuario(usuario: usuario, empresa: empresa),
+                ),
+              );
+          }
         },
       ),
-      body: buildBody(),
     );
   }
 }

@@ -5,7 +5,7 @@ class EmpresaApi extends Api {
   EmpresaApi(String token) : super(token);
 
   Future<List<Empresa>> getEmpresas() async {
-    final data = await get('empresas');
+    final data = await get('api/v1/empresas');
     if (data is List) {
       final empresas = data.map((e) => Empresa.fromJson(e)).toList();
       return empresas;
@@ -15,7 +15,7 @@ class EmpresaApi extends Api {
   }
 
   Future<Empresa> getEmpresa(int id) async {
-    final data = await get('empresas/$id');
+    final data = await get('api/v1/empresas/$id');
     if (data is Map<String, dynamic>) {
       final empresa = Empresa.fromJson(data);
       return empresa;
