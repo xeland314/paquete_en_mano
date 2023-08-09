@@ -8,7 +8,7 @@ class Empresa {
   final String direccion;
   final String correo;
   final String telefono;
-  final dynamic logoEmpresa;
+  final String? logoEmpresa;
 
   Empresa({
     required this.id,

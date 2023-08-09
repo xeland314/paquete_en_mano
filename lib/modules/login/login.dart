@@ -3,7 +3,6 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:paquete_en_mano/api/auth_api.dart';
-import 'package:paquete_en_mano/modules/main_page.dart';
 
 @immutable
 class LoginPage extends StatefulWidget {
@@ -101,8 +100,7 @@ class LoginPageState extends State<LoginPage> {
                           // Save the token securely
                           _storage.write(key: 'token', value: token);
                           // Navigate to the second screen
-                          navigator.push(MaterialPageRoute(
-                              builder: (context) => const Dashboard()));
+                          navigator.pushNamed('/dashboard');
                         }
                         completer.complete();
                       });
